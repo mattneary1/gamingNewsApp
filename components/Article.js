@@ -1,37 +1,32 @@
 import React from "react";
 import { View, StyleSheet, Text, SafeAreaView, Image } from "react-native";
+import moment from "moment";
 
-const Article = () => {
+const Article = (props) => {
 	return (
 		<SafeAreaView style={styles.container}>
 			{/* Image */}
 			<Image
 				source={{
-					uri: "https://images.unsplash.com/photo-1488590528505-98d2b5aba04b?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1470&q=80"
+					uri: props.urlToImage
 				}}
 				style={styles.image}
 			/>
 			<View style={{ padding: 20 }}>
 				{/* Title */}
-				<Text style={styles.title}>Gaming News App using React Native</Text>
+				<Text style={styles.title}>{props.title}</Text>
 				{/* Description */}
-				<Text style={styles.description}>
-					At vero eos et accusamus et iusto odio dignissimos ducimus qui
-					blanditiis praesentium voluptatum deleniti atque corrupti quos dolores
-					et quas molestias excepturi sint occaecati cupiditate non provident.
+				<Text style={styles.description} numberOfLines={3}>
+					{props.description}
 				</Text>
-				<View style={styles.data}>
-					<Text style={styles.heading}>
-						By: <Text style={styles.author}>Matt Neary</Text>
-					</Text>
-					<Text style={styles.date}>Nov. 6th, 2022</Text>
-				</View>
 				{/* Source */}
-				<View style={{ marginTop: 10 }}>
-					<Text>
-						source: <Text style={styles.source}>Matt Neary</Text>
+				<View style={styles.data}>
+					<Text style={styles.source}>{props.sourceName.toUpperCase()}</Text>
+					<Text style={styles.date}>
+						{moment(props.publishedAt).format("MMM Do YY")}
 					</Text>
 				</View>
+				<View style={{ marginTop: 10 }}></View>
 			</View>
 		</SafeAreaView>
 	);
@@ -54,38 +49,34 @@ const styles = StyleSheet.create({
 		marginTop: 20
 	},
 	image: {
-		height: 200,
+		height: 150,
 		width: "100%",
 		borderTopLeftRadius: 30,
 		borderTopRightRadius: 30
 	},
 	title: {
-		fontSize: 18,
+		fontSize: 16,
 		fontWeight: "600",
 		marginTop: 10
 	},
 	description: {
-		fontSize: 16,
+		fontSize: 14,
 		fontWeight: "400",
-		marginTop: 10
+		marginTop: 15
 	},
 	data: {
 		flexDirection: "row",
 		justifyContent: "space-between",
-		marginTop: 10
-	},
-	heading: {},
-	author: {
-		fontWeight: "bold"
+		marginTop: 15
 	},
 	date: {
 		fontWeight: "bold",
-		color: "#fb5012",
-		fontSize: 16
+		color: "#040F16",
+		fontSize: 14
 	},
 	source: {
-		color: "#fb5012",
+		color: "#6564DB",
 		fontWeight: "bold",
-		fontSize: 16
+		fontSize: 14
 	}
 });
