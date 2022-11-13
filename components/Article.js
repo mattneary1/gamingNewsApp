@@ -1,10 +1,15 @@
 import React from "react";
-import { View, StyleSheet, Text, SafeAreaView, Image } from "react-native";
+import { View, StyleSheet, Text, Image, Pressable } from "react-native";
 import moment from "moment";
+import * as WebBrowser from "expo-web-browser";
 
 const Article = (props) => {
+	const goToSource = () => {
+		WebBrowser.openBrowserAsync(props.url);
+	};
+
 	return (
-		<SafeAreaView style={styles.container}>
+		<Pressable style={styles.container} onPress={goToSource}>
 			{/* Image */}
 			<Image
 				source={{
@@ -28,7 +33,7 @@ const Article = (props) => {
 				</View>
 				<View style={{ marginTop: 10 }}></View>
 			</View>
-		</SafeAreaView>
+		</Pressable>
 	);
 };
 
@@ -60,7 +65,7 @@ const styles = StyleSheet.create({
 		marginTop: 10
 	},
 	description: {
-		fontSize: 14,
+		fontSize: 12,
 		fontWeight: "400",
 		marginTop: 15
 	},
@@ -72,11 +77,11 @@ const styles = StyleSheet.create({
 	date: {
 		fontWeight: "bold",
 		color: "#040F16",
-		fontSize: 14
+		fontSize: 10
 	},
 	source: {
 		color: "#6564DB",
 		fontWeight: "bold",
-		fontSize: 14
+		fontSize: 10
 	}
 });

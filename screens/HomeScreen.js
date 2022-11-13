@@ -8,12 +8,7 @@ const HomeScreen = () => {
 	const getNews = () => {
 		axios
 			.get(
-				"https://newsapi.org/v2/top-headlines?q=playstation&language=en&apiKey=9ed1a94e525245db844f1bc43a8fde29",
-				{
-					params: {
-						category: "technology"
-					}
-				}
+				"https://newsapi.org/v2/top-headlines?category=technology&language=en&apiKey=9ed1a94e525245db844f1bc43a8fde29"
 			)
 			.then((response) => {
 				// handle success
@@ -42,9 +37,9 @@ const HomeScreen = () => {
 						urlToImage={item.urlToImage}
 						title={item.title}
 						description={item.description}
-						author={item.author}
 						publishedAt={item.publishedAt}
 						sourceName={item.source.name}
+						url={item.url}
 					/>
 				)}
 				keyExtractor={(item) => item.title}
@@ -56,5 +51,7 @@ const HomeScreen = () => {
 export default HomeScreen;
 
 const styles = StyleSheet.create({
-	container: {}
+	container: {
+		backgroundColor: "#d7d7d7"
+	}
 });
